@@ -14,7 +14,7 @@ goog.require("org.createjs.tweenjs.TweenJS");
 
 BOK.inherits(SplashScreenApp, App);
 
-SplashScreenApp.DISPLAY_TEXT = 'Enveesoft';
+SplashScreenApp.DISPLAY_TEXT = 'lys';
 
 /**
  * @param {Element|createjs.Stage} stage
