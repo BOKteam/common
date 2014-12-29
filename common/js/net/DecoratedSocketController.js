@@ -30,6 +30,14 @@ DecoratedSocketController.prototype.init = function(host, opt) {
     }
     console.log('decorate socket init');
     this.bindSocketListener(this.socket_);
+
+    //This onAny interface is my hack on socket.io not official.
+    //But currently there is no official way to add generic listener 
+    this.socket_.onAny(Delegate.create(this, function(eventName, data){
+        console.log("Event: "+eventName);
+        console.log(data);
+        this.dispatchEvent(new Event('[SOCKET]'+eventName, data));
+    }));
 };
 
 
