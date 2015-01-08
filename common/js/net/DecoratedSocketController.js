@@ -10,7 +10,7 @@ goog.require('bok.EventDispatcher');
 BOK.inherits(DecoratedSocketController, EventDispatcher);
 /**
  * @constructor
- * @param {DecoratedSocketController} controller
+ * @param {DecoratedSocketController=} controller (optional)
  * */
 function DecoratedSocketController(controller) {
     EventDispatcher.call(this);
