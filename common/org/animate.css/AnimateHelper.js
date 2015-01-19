@@ -78,8 +78,7 @@ var AnimateHelper = {
     animateOnce: function(element, animateName) {
         var $e = $(element);
         $e.addClass('animated ' + animateName);
-        $e.off(this.ANIMATION_EVENTS);
-        $e.on(this.ANIMATION_EVENTS, function(){
+        $e.one(this.ANIMATION_EVENTS, function(){
             $e.removeClass('animated ' + animateName);
         });
     },
