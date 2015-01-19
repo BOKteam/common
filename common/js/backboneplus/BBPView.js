@@ -5,10 +5,14 @@ goog.provide('bok.backboneplus.BBPView');
 goog.require('bok.BOK');
 
 BOK.inherits(BBPView, Backbone.View);
-function BBPView(){
+/**
+ * @constructor
+ * @param {string} template Could be the _ template object
+ * */
+function BBPView(template){
     Backbone.View.call(this);
 
-    this.template = function(){
+    this.template = template ? _.template(template) : function(){
         throw Error('BBPView: please provide template for view.')
     };
 }
