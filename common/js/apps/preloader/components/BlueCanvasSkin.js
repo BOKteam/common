@@ -16,8 +16,8 @@ BOK.implement(BlueCanvasSkin, IPreloaderSkin);
 
 /**
  * @override
- * @param {createjs.Bitmap} loadingBG //loading backgroud pg
- * @param {string} barColor //loading backgroud color in format 'rgba(255,255,255,0.8)'
+ * @param {createjs.Bitmap} loadingBG loading background pg
+ * @param {string=} barColor (optional) loading background color in format 'rgba(255,255,255,0.8)'
  */
 function BlueCanvasSkin(loadingBG, barColor)
 {
