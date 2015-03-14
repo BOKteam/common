@@ -13,7 +13,7 @@ goog.require("org.createjs.tweenjs.TweenJS");
 
 BOK.inherits(Stretcher, createjs.Container);
 
-function Stretcher(canvasDom, defaultWidth, defaultHeight) {
+function Stretcher(canvasDom, defaultWidth, defaultHeight, bgColor) {
     createjs.Container.call(this);
 
     this.dWidth_ = defaultWidth || canvasDom.width;
@@ -22,6 +22,10 @@ function Stretcher(canvasDom, defaultWidth, defaultHeight) {
     this.canvasDom = canvasDom;
     this.stage = new createjs.Stage(canvasDom);
     this.stage.addChild(this);
+
+    this.base_ = new createjs.Shape();
+    this.base_.graphics.beginFill(bgColor || 'rgba(0, 0, 0, 1)').drawRect(0, 0, this.dWidth_, this.dHeight_);
+    this.addChild(this.base_);
 
     this.fps_ = new createjs.Text('', "25px Arial bold", "#FFFFFF");
     this.stage.addChild(this.fps_);
@@ -55,8 +59,8 @@ Stretcher.prototype.showFPS = function() {
     this.fps_.visible = true;
 };
 
-Stretcher.prototype.update_ = function() {
-    this.stage.update();
+Stretcher.prototype.update_ = function(e) {
+    this.stage.update(e);
     if(this.fps_.visible){
         var now = new Date().getTime();
         if(this.then_ && !this.showFpsInterval_--){

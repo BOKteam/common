@@ -64,12 +64,12 @@ EaselAnimationHelper.putDown = function(object, duration)
 
 EaselAnimationHelper.disappear = function(object, duration)
 {
-	return createjs.Tween.get(object).to({alpha:0}, duration, createjs.Ease.bounceOut);
+	return createjs.Tween.get(object).to({alpha:0}, duration || 700, createjs.Ease.cubicOut);
 };
 
 EaselAnimationHelper.fadeIn = function(object, duration)
 {
     object.alpha = 0;
-	return createjs.Tween.get(object).to({alpha:1}, duration, createjs.Ease.bounceOut);
+	return createjs.Tween.get(object).to({alpha:1}, duration || 700, createjs.Ease.cubicIn);
 };
 
