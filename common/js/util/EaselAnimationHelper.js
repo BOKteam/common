@@ -62,14 +62,14 @@ EaselAnimationHelper.putDown = function(object, duration)
 	return createjs.Tween.get(object.shadow).to({offsetX:0, offsetY:0, blur:0}, duration, createjs.Ease.cubicOut);
 };
 
-EaselAnimationHelper.disappear = function(object, duration)
+EaselAnimationHelper.disappear = function(object, duration, delay)
 {
-	return createjs.Tween.get(object).to({alpha:0}, duration || 700, createjs.Ease.cubicOut);
+	return createjs.Tween.get(object).wait(delay).to({alpha:0}, duration || 700, createjs.Ease.cubicOut);
 };
 
-EaselAnimationHelper.fadeIn = function(object, duration)
+EaselAnimationHelper.fadeIn = function(object, duration, delay)
 {
     object.alpha = 0;
-	return createjs.Tween.get(object).to({alpha:1}, duration || 700, createjs.Ease.cubicIn);
+	return createjs.Tween.get(object).wait(delay).to({alpha:1}, duration || 700, createjs.Ease.cubicIn);
 };
 
