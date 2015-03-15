@@ -9,6 +9,7 @@ goog.provide("bok.framework.core.MVCFeature");
 goog.require("bok.framework.core.BaseCommand");
 goog.require("bok.framework.core.BaseMediator");
 goog.require("bok.framework.core.BaseProxy");
+goog.require("bok.framework.core.FeatureNotesCollection");
 goog.require("bok.framework.util.frameworkUtil");
 goog.require("bok.BOK");
 goog.require('bok.EventDispatcher');
