@@ -80,6 +80,9 @@ BOK.isFirefox = function()
     //console.log("is firefox: "+navigator.userAgent.toLowerCase())
     return (navigator.userAgent.toLowerCase().indexOf("mozilla") >-1);
 };
+BOK.isWeiXin = function(){
+    return (navigator.userAgent.toLowerCase().indexOf("micromessenger") >-1);
+};
 
 BOK.quickRound = function(value)
 {
