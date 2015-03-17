@@ -75,10 +75,33 @@ var AnimateHelper = {
      * @param {$Object} element The element to be animated.
      * @param {string} animateName The name of animation as in animate.css
      * */
+    animateOnceAndShow: function(element, animateName) {
+        var $e = $(element);
+        $e.show();
+        this.animateOnce(element, animateName);
+    },
+
+    /**
+     * @param {$Object} element The element to be animated.
+     * @param {string} animateName The name of animation as in animate.css
+     * */
+    animateOnceAndHide: function(element, animateName) {
+        var $e = $(element);
+        $e.one(this.ANIMATION_EVENTS, function(){
+            $e.hide();
+        });
+        this.animateOnce(element, animateName);
+    },
+
+    /**
+     * @param {$Object} element The element to be animated.
+     * @param {string} animateName The name of animation as in animate.css
+     * */
     animateOnce: function(element, animateName) {
         var $e = $(element);
         $e.addClass('animated ' + animateName);
-        $e.one(this.ANIMATION_EVENTS, function(){
+        $e.one(this.ANIMATION_EVENTS, function(e){
+            e.stopPropagation();
             $e.removeClass('animated ' + animateName);
         });
     },
@@ -99,6 +122,8 @@ var AnimateHelper = {
                 $e.append('<span>'+contentStrAry[i]+'</span>');
             }
         }
+        $('span', $e).removeClass();
+
 
         AnimateHelper.fadeInElementList($('span', $e), inAnimationName, introDelay, itemDelay);
     },

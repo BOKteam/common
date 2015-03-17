@@ -4,22 +4,22 @@
  * Time: 下午3:57
  * Author: <mail>526597516@qq.com</mail>
  */
-goog.provide("bok.apps.preloader.components.BlueCanvasSkin");
+goog.provide("bok.apps.preloader.components.MoveObjectSkin");
 goog.require("bok.apps.preloader.interfaces.IPreloaderSkin");
 goog.require("bok.Delegate");
 
 goog.require("org.createjs.easeljs.EaselJS");
 goog.require("org.createjs.tweenjs.TweenJS");
 
-BOK.inherits(BlueCanvasSkin, createjs.Container);
-BOK.implement(BlueCanvasSkin, IPreloaderSkin);
+BOK.inherits(MoveObjectSkin, createjs.Container);
+BOK.implement(MoveObjectSkin, IPreloaderSkin);
 
 /**
  * @override
  * @param {createjs.Bitmap} loadingBG loading background pg
  * @param {string=} barColor (optional) loading background color in format 'rgba(255,255,255,0.8)'
  */
-function BlueCanvasSkin(loadingBG, barColor)
+function MoveObjectSkin(movingObj, barColor)
 {
     createjs.Container.call(this);
     this.loadingBar_ = null;
@@ -31,14 +31,16 @@ function BlueCanvasSkin(loadingBG, barColor)
     this.entities_= [];
     this.PERCENT_PER_BAR = 1;
     this.loadingBarColor = barColor || 'rgba(255,255,255,0.8)';
+    this.obj_ = movingObj;
 
-    this.addChild(loadingBG);
+    movingObj.set({x:140, y: 0});
+    this.addChild(movingObj);
 }
 
 /** @override
  * @param {number} loadingPercentage
  * */
-BlueCanvasSkin.prototype.update = function(loadingPercentage)
+MoveObjectSkin.prototype.update = function(loadingPercentage)
 {
     if(loadingPercentage > 100)
         loadingPercentage = 100;
@@ -48,6 +50,7 @@ BlueCanvasSkin.prototype.update = function(loadingPercentage)
     var completeBarPercent = loadingPercentage % this.PERCENT_PER_BAR;
     var lastBarIndex = this.bars_.length-1;
 
+    this.obj_.x = 140 + loadingPercentage/100 * 500;
     this.removeChild(this.bars_[lastBarIndex]);
     var completeWidth = 0;
     for(var i = lastBarIndex; i < fullBarNum; ++i)
@@ -78,7 +81,7 @@ BlueCanvasSkin.prototype.update = function(loadingPercentage)
 /**
  * @override
  * */
-BlueCanvasSkin.prototype.finish = function()
+MoveObjectSkin.prototype.finish = function()
 {
     this.update(100);
 
@@ -88,7 +91,7 @@ BlueCanvasSkin.prototype.finish = function()
 /**
  * @override
  * */
-BlueCanvasSkin.prototype.displayStart = function()
+MoveObjectSkin.prototype.displayStart = function()
 {
     this.loadingBar_= new createjs.Shape();
     this.loadingBar_.graphics.beginStroke("#C8C5C3").drawRoundRectComplex(150 - 2, 250, this.BAR_WIDTH + 4, this.BAR_HEIGHT, 5, 5, 5, 5 );
@@ -106,7 +109,7 @@ BlueCanvasSkin.prototype.displayStart = function()
 /**
  * @override
  * */
-BlueCanvasSkin.prototype.regSkinReadyCallback = function(callback)
+MoveObjectSkin.prototype.regSkinReadyCallback = function(callback)
 {
     this.skinReadyCallback = callback;
 };
@@ -114,7 +117,7 @@ BlueCanvasSkin.prototype.regSkinReadyCallback = function(callback)
 /**
  * @override
  * */
-BlueCanvasSkin.prototype.regSkinFinishCallback = function(callback)
+MoveObjectSkin.prototype.regSkinFinishCallback = function(callback)
 {
     this.displayFinishCallback = callback;
 };
@@ -122,14 +125,14 @@ BlueCanvasSkin.prototype.regSkinFinishCallback = function(callback)
 /**
  * @override
  * */
-BlueCanvasSkin.prototype.dismiss = function()
+MoveObjectSkin.prototype.dismiss = function()
 {
 };
 
 /**
  * @private
  * */
-BlueCanvasSkin.prototype.skinDisplayFinish = function()
+MoveObjectSkin.prototype.skinDisplayFinish = function()
 {
     this.removeAllChildren();
     this.bars_ = [];
