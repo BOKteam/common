@@ -39,6 +39,10 @@ MVCFeature.notes = {
 	internal:{}
 };
 
+MVCFeature.GENERIC_NOTES = {
+    INIT: 'INIT'
+};
+
 /**
  * @public
  * */
@@ -87,6 +91,8 @@ MVCFeature.prototype.setup = function ()
 		item.constructor.domain = newDomain;
 		item.setup();
 	});
+
+    this.sendNotification('INIT');
 };
 
 /*
