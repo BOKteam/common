@@ -40,6 +40,10 @@ MVCFeature.notes = {
 };
 
 MVCFeature.GENERIC_NOTES = {
+    /**
+     * This notification will be fired when a feature is initialized.
+     * @see MVCFeature.prototype.setup
+     * */
     INIT: 'INIT'
 };
 
