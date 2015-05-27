@@ -60,9 +60,9 @@ bok.features.basicmatch3.v.components.IconCounter.prototype.addIconCount = funct
 
     if(!suppressAnimation)
     {
-        createjs.Tween.get(this).
-            to({alpha:0}, 300, createjs.Ease.bounceOut).
-            to({alpha:1}, 600, createjs.Ease.bounceOut);
+        createjs.Tween.get(this)
+            .to({alpha:0}, 300, createjs.Ease.bounceOut)
+            .to({alpha:1}, 600, createjs.Ease.bounceOut);
 
         this.plusNumber_.text = '+ ' + count;
         this.plusNumber_.alpha = 1;
